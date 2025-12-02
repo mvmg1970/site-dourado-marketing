@@ -78,7 +78,7 @@
                     <div class="service-icon">
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
-                    <h3>Google Perfil de</h3>
+                    <h3>Google Perfil de Empresa</h3>
                     <p>
                         O Google Perfil de Empresa é uma ferramenta essencial para destacar sua empresa nas buscas
                         online e no Google Maps. Ao criar ou atualizar sua ficha, você permite que seus clientes
@@ -298,7 +298,6 @@
                 <h2>O que nossos clientes falam sobre nós</h2>
                 <p>Em breve, depoimentos reais de clientes que já transformaram seus resultados com a Dourado Marketing Digital.</p>
             </div>
-            <!-- Aqui futuramente você pode inserir cards de depoimentos -->
         </div>
     </section>
 
@@ -427,10 +426,67 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="script.js"></script>
+
+    <!-- Atualiza o ano no rodapé -->
     <script>
-        // Atualiza o ano no rodapé
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
+
+    <!-- Chatbase Widget - Versão Otimizada -->
+    <script>
+    (function() {
+        // Verifica se já está inicializado
+        if (window.chatbase && window.chatbase("getState") === "initialized") {
+            return;
+        }
+
+        // Inicializa o chatbase
+        window.chatbase = (...arguments) => {
+            if (!window.chatbase.q) {
+                window.chatbase.q = [];
+            }
+            window.chatbase.q.push(arguments);
+        };
+
+        // Proxy para melhor compatibilidade
+        window.chatbase = new Proxy(window.chatbase, {
+            get(target, prop) {
+                if (prop === "q") {
+                    return target.q;
+                }
+                return (...args) => target(prop, ...args);
+            }
+        });
+
+        // Função para carregar o script
+        const loadChatbase = function() {
+            const script = document.createElement("script");
+            script.src = "https://www.chatbase.co/embed.min.js";
+            script.id = "S0BvjPkdvOytxcaOZjt90";
+            script.domain = "www.chatbase.co";
+            script.defer = true;
+
+            script.onload = function() {
+                console.log("✅ Chatbase carregado com sucesso");
+            };
+
+            script.onerror = function() {
+                console.warn("⚠️ Erro ao carregar Chatbase");
+            };
+
+            document.body.appendChild(script);
+        };
+
+        // Carrega quando a página estiver pronta
+        if (document.readyState === "complete" || document.readyState === "interactive") {
+            setTimeout(loadChatbase, 1);
+        } else {
+            window.addEventListener("DOMContentLoaded", loadChatbase);
+        }
+    })();
+    </script>
+
 </body>
 </html>
